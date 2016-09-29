@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>School Dashboard</title>
+  <%=stylesheet_link_tag 'custom'%>
+</head>
+<body>
+<div class="container" id="schoolDashboard">
+  <button id="addNewSchool">Add new school</button>
+  <button id="listSchools">List schools</button>
+</div>
+
+<div class="all_content">
+  <%= render partial: 'schools/school_add_edit'%>
+  <%= render partial: 'schools/school_list'%>
+  <%= render partial: 'schools/classroom_index'%>
+  <%= render partial: 'schools/classroom_add_edit'%>
+  <%= render partial: 'schools/classroom_list'%>
+</div>
+<footer class="footer">
+
+</footer>
+</body>
+</html>
+<%=javascript_include_tag 'jquery-validate.js'%>
+<%=javascript_include_tag 'school_manifest'%>
+<%=javascript_include_tag 'classroom_manifest'%>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var schoolDashboard = new SM.SchoolDashboard(school_id);
+    });
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Classroom Dashboard</title>
+  <%=stylesheet_link_tag 'custom'%>
+</head>
+<body>
+<div class="container" id="classroomDashboard">
+  <button id="addNewClassroom">Add new classroom</button>
+  <button id="listClassrooms">List classrooms</button>
+</div>
+
+<div class="all_content">
+  <%= render partial: 'classrooms/classroom_add_edit'%>
+  <%= render partial: 'classrooms/classroom_list'%>
+</div>
+<footer class="footer">
+
+</footer>
+</body>
+</html>
+
+
+<%=javascript_include_tag 'jquery-validate.js'%>
+<%=javascript_include_tag 'classroom_manifest'%>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var classroomDashboard = new SM.ClassroomDashboard();
+    });
+</script>

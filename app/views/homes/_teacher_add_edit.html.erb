@@ -1,0 +1,28 @@
+<div class="main">
+  <div class="container hidden" id="addEditTeacherForm">
+    <input type="hidden" id="teacher_id" value="">
+    <h2>Add/edit teacher</h2>
+    <form class="form-horizontal" action="" method="" id="teacherForm">
+      <label>Name</label>
+      <input type="text" name="teacher_name" id="teacherName" class="form-control" value=""/>
+      <label>Gender</label>
+      <select name="teacher_gender" id="teacherGender" >
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
+      <label>Phone no</label>
+      <input type="text" name="teacher_phoneno" id="teacherPhoneno" class="form-control" value=""/>
+      <label>Classroom</label>
+      <select multiple="multiple" name="classroom_list_element" id="classroomListElement" >
+      </select>
+      <label>Subject</label>
+      <select multiple="multiple" name="subject_list_element" id="subjectListElement">
+      </select>
+      <button type="submit" class="btn btn-primary" id="teacherAdd">Add</button>
+      <button type="submit" class="btn btn-primary hidden" id="teacherUpdate">Edit</button>
+    </form>
+    <div id="back-link-go-back">
+      <a class="back-link-title">Back</a>
+    </div>
+  </div>
+</div>
