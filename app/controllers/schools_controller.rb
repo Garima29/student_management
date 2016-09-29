@@ -21,11 +21,9 @@ class SchoolsController < ApplicationController
 
   def create
     @school = School.new(school_params)
-    p @school
       if @school.save
         render :json=>@school, status: :ok
       else
-        p @school.error
         render :json=>{:error=>@school.errors}, status: :unprocessable_entity
     end
   end

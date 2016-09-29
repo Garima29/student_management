@@ -28,7 +28,6 @@ class ClassroomsController < ApplicationController
     if @classroom.save
       render :json=>@classroom, status: :ok
     else
-      p @classroom.errors
       render :json=>{:error=>@classroom.errors}, status: :unprocessable_entity
     end
   end
