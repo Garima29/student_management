@@ -75,15 +75,17 @@ SM.AddEditClassroom.prototype= {
             url: '/schools/non_archive_index',
             type: 'GET',
             format: 'JSON',
-            async: false,
+            async: true,
             success: function (data, textStatus, jqXHR) {
+                console.log("jhjjjhg");
+                console.log(data);
                 $('#schoolListElement').html("");
                 $.each(data, function (i, school) {
                     var option_string = "<option value=" + school.id + ">" + school.name + "</option>";
                     $('#schoolListElement').append(option_string);
                 });
+
                 if(school_created) {
-                    alert("school");
                    var school=$('#addEditSchoolForm #school_id').val();
                     $('#addEditClassroomForm #schoolListElement option[value = '+school+']' ).prop('selected','true');
                     $('#addEditClassroomForm #schoolListElement').prop('disabled', true);
@@ -106,6 +108,11 @@ SM.AddEditClassroom.prototype= {
                 classroom["name"]=$("#addEditClassroomForm  #classroomName").val();
                 classroom["no_of_students"]=$("#addEditClassroomForm #classroomNoOfStudents").val();
                 classroom["school_id"]=$("#addEditClassroomForm #schoolListElement").find(":selected").val();
+                var teacher_created=$('#addEditTeacherForm #teacher_id').val() == '' ? false : true;
+                if(teacher_created){
+                    var teacher_id=$('#addEditTeacherForm #teacher_id').val();
+                    classroom["teacher_ids"]=[teacher_id];
+                }
                 $.ajax({
                     url: '/classrooms',
                     type: 'POST',

@@ -28,8 +28,11 @@ class ClassroomsController < ApplicationController
   end
 
   def create
-    @classroom = Classroom.new(classroom_params)
+    classroom_data=params.require(:classroom).permit(:name, :no_of_students, :school_id).merge(:teacher_ids=>params[:classroom][:teacher_ids])
+    @classroom = Classroom.new(classroom_data)
     if @classroom.save
+      p @classroom
+      p @classroom.teachers
       render :json=>@classroom, status: :ok
     else
       render :json=>{:error=>@classroom.errors}, status: :unprocessable_entity
@@ -70,6 +73,9 @@ class ClassroomsController < ApplicationController
   def teacher_classrooms
     @teacher = Teacher.find(params[:id])
     @classrooms = @teacher.classrooms.collect {|c| c if c.archive == false}.compact
+    @classrooms.each do |classroom|
+     p classroom.teachers
+    end
     render :json=>@classrooms, status: :ok
   end
   private

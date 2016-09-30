@@ -107,7 +107,8 @@ SM.AddEditSchool.prototype= {
                         //window.location.assign('/classroom_dashboard/show_classroom_dashboard');
                         console.log(data);
                         $('#addEditSchoolForm #school_id').val(data.id);
-                       var classroomDashboard =new SM.ClassroomDashboard();
+                        var addEditClassroom=new SM.AddEditClassroom();
+                       //var classroomDashboard =new SM.ClassroomDashboard();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         //alert(JSON.parse(jqXHR.responseText)["error"]);

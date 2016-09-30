@@ -45,11 +45,13 @@ SM.ListingClassroom.prototype= {
         teacher_created=$('#addEditTeacherForm #teacher_id').val() == '' ? false :true ;
         if(teacher_created) {
             teacher_id=$('#addEditTeacherForm #teacher_id').val();
+            console.log("t id in list classrom");
+            console.log(teacher_id);
             $.ajax({
                 url: '/classrooms/' + teacher_id + '/teacher_classrooms',
                 type: 'GET',
                 format: 'JSON',
-                async: false,
+                async: true,
                 success: function (data, textStatus, jqXHR) {
                     console.log("listing classrooms");
                     $.each(data, function (i, item) {
