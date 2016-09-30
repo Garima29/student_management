@@ -2,17 +2,29 @@
   <div class="container hidden" id="addEditClassroomForm">
     <input type="hidden" id="classroom_id" value="">
     <h2>Add/edit classroom</h2>
-    <form class="form-horizontal" action="" method="" id="classroomForm" method="" action="">
-        <label>Name</label>
-        <input type="text" name="classroom_name" id="classroomName" class="form-control" value=""/>
-        <label>Number of students</label>
-        <input type="text" name="classroom_no_of_students" id="classroomNoOfStudents" class="form-control" value=""/>
-        <label>School</label>
-          <select name="school_list_element" id="schoolListElement">
+    <form class="form-horizontal" action="" method="" id="classroomForm">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-6">
+          <input type="text" name="classroom_name" id="classroomName" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Number of students</label>
+        <div class="col-lg-6">
+          <input type="text" name="classroom_no_of_students" id="classroomNoOfStudents" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">School</label>
+        <div class="col-lg-6">
+          <select name="school_list_element" id="schoolListElement" class="form-control">
             <option value="" disabled selected>Select a school </option>
           </select>
+        </div>
+      </div>
         <button type="submit" class="btn btn-primary" id="classroomAdd">Add</button>
-        <button type="submit" class="btn btn-primary hidden" id="classroomUpdate">Edit</button>
+        <button type="submit" class="btn btn-primary hidden" id="classroomUpdate">Update</button>
     </form>
     <div id="back-link-go-back">
       <a class="back-link-title">Back</a>

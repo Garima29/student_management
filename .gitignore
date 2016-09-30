@@ -3,3 +3,5 @@
 tmp/
 coverage/*
 dump.rdb
+config/database.yml
+log/*.log

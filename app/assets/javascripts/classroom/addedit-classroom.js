@@ -32,7 +32,8 @@ SM.AddEditClassroom.prototype= {
     handleBackButton :function(){
         $("#back-link-go-back .back-link-title").unbind();
         $("#back-link-go-back .back-link-title").click(function(){
-            var listingClassroom=new SM.ListingClassroom();
+            school_id=$('#addEditSchoolForm #school_id').val();
+            var listingClassroom=new SM.ListingClassroom(school_id);
         });
     },
     clearClassroomForm :function(){

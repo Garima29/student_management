@@ -4,3 +4,6 @@
 .no-style{
     list-style: none;
 }
+.no-style li{
+    padding: 5px;
+}
