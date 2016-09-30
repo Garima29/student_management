@@ -24,6 +24,7 @@ class SchoolsController < ApplicationController
       if @school.save
         render :json=>@school, status: :ok
       else
+        p @school.errors
         render :json=>{:error=>@school.errors}, status: :unprocessable_entity
     end
   end

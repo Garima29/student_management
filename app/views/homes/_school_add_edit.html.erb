@@ -2,19 +2,37 @@
   <div class="container hidden" id="addEditSchoolForm">
     <input type="hidden" id="school_id" value="">
     <h2>Add/edit school</h2>
-    <form class="form-horizontal" action="" method="" id="schoolForm" method="" action="">
-      <label col-lg-2 control-label>Name</label>
-      <div class="col-lg-10">
-        <input type="text" name="school_name" id="schoolName" class="form-control" value=""/>
+    <form class="form-horizontal" action="" method="" id="schoolForm">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-6">
+            <input type="text" name="school_name" id="schoolName" class="form-control" value=""/>
+        </div>
       </div>
-        <label>City</label>
-        <input type="text" name="school_city" id="schoolCity" class="form-control" value=""/>
-        <label>State</label>
-        <input type="text" name="school_state" id="schoolState" class="form-control" value=""/>
-        <label>Zipcode</label>
-        <input type="text" name="school_zipcode" id="schoolZipcode" class="form-control" value=""/>
-        <label>Phone no</label>
-        <input type="text" name="school_phone_no" id="schoolPhoneno" class="form-control" value=""/>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">City</label>
+        <div class="col-lg-6">
+          <input type="text" name="school_city" id="schoolCity" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">State</label>
+        <div class="col-lg-6">
+          <input type="text" name="school_state" id="schoolState" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Zipcode</label>
+        <div class="col-lg-6">
+          <input type="text" name="school_zipcode" id="schoolZipcode" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Phone no</label>
+        <div class="col-lg-6">
+          <input type="text" name="school_phone_no" id="schoolPhoneno" class="form-control" value=""/>
+        </div>
+      </div>
         <button type="submit" class="btn btn-primary" id="schoolAdd">Add</button>
         <button type="submit" class="btn btn-primary hidden" id="schoolUpdate">Edit</button>
       <div id="back-link-go-back">
