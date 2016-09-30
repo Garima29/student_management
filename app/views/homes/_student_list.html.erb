@@ -1,8 +1,7 @@
 <div class="main">
   <div class="container hidden" id="listStudentsForm">
     <h2>List students</h2>
-
-    <table>
+    <table class="table table-striped table-hover">
       <thead>
       <tr>
         <th>Name</th>
@@ -15,38 +14,40 @@
       </tr>
       </thead>
     </table>
-    <ul id='student-list'>
-      <li id='student-list-template-clone' class="hidden">
-        <div class='row'>
-          <span class='col-sm-4 span-student-name'>
-            Student name
-          </span>
-          <span class='col-sm-4 span-student-father-name'>
-            Student father
-          </span>
-          <span class='col-sm-4 span-student-mother-name'>
-            Student mother
-          </span>
-          <span class='col-sm-4 span-student-city'>
-            Student city
-          </span>
-          <span class='col-sm-4 span-student-state'>
-            Student state
-          </span>
-          <span class='col-sm-4 span-student-phoneno'>
-            Student phoneno
-          </span>
-          <span>
-            <button type="button" class="editStudent" id="" button-type="edit" data-li="student-list-template-clone">Edit</button>
-            <button type="button" class="deleteStudent" id="" button-type="delete" data-li="student-list-template-clone">Delete</button>
-            <!--<button type="button" class="listSubjects" id="listTeacherClassrooms" button-type="showTeacherClassrooms" data-li="teacher-list-template-clone">List classrooms</button>-->
-          </span>
-        </div>
-      </li>
-    </ul>
-    <button class="addNewStudent">Add new student</button>
-    <div id="back-link-go-back">
-      <a class="back-link-title">Back</a>
+    <div class="col-md-10 col-sm-10">
+      <ul id='student-list'>
+        <li id='student-list-template-clone' class="hidden">
+          <div class='row'>
+            <span class='col-sm-4 span-student-name'>
+              Student name
+            </span>
+            <span class='col-sm-4 span-student-father-name'>
+              Student father
+            </span>
+            <span class='col-sm-4 span-student-mother-name'>
+              Student mother
+            </span>
+            <span class='col-sm-4 span-student-city'>
+              Student city
+            </span>
+            <span class='col-sm-4 span-student-state'>
+              Student state
+            </span>
+            <span class='col-sm-4 span-student-phoneno'>
+              Student phoneno
+            </span>
+            <span>
+              <button type="button" class="editStudent btn btn-primary" id="" button-type="edit" data-li="student-list-template-clone">Edit</button>
+              <button type="button" class="deleteStudent btn btn-primary" id="" button-type="delete" data-li="student-list-template-clone">Delete</button>
+              <!--<button type="button" class="listSubjects" id="listTeacherClassrooms" button-type="showTeacherClassrooms" data-li="teacher-list-template-clone">List classrooms</button>-->
+            </span>
+          </div>
+        </li>
+      </ul>
+      <button class="addNewStudent">Add new student</button>
+      <div id="back-link-go-back">
+        <a class="back-link-title">Back</a>
+      </div>
     </div>
   </div>
 </div>
