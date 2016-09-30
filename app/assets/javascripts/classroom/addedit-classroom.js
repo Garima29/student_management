@@ -83,8 +83,10 @@ SM.AddEditClassroom.prototype= {
                     $('#schoolListElement').append(option_string);
                 });
                 if(school_created) {
-                    $('#schoolListElement').val($('#addEditSchoolForm #school_id').val());
-                    $('#schoolListElement').prop('disabled', true);
+                    alert("school");
+                   var school=$('#addEditSchoolForm #school_id').val();
+                    $('#addEditClassroomForm #schoolListElement option[value = '+school+']' ).prop('selected','true');
+                    $('#addEditClassroomForm #schoolListElement').prop('disabled', true);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

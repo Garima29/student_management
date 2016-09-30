@@ -7,7 +7,11 @@ class ClassroomsController < ApplicationController
 
   def non_archive_index
     @school = School.find(params[:school_id])
+    p "+++++++++++++++++++"
+    p @school.id
+    p "+++++++++++++++++++"
     @classrooms = @school.classrooms.collect {|c| c if c.archive == false}.compact
+    p @classrooms
     render :json => @classrooms, :status => :ok
   end
 

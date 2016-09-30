@@ -62,6 +62,8 @@ SM.ListingClassroom.prototype= {
             });
         }
         else {
+            console.log("+++++++++++++++++++");
+            console.log(this.school_id);
             $.ajax({
                 url: '/classrooms/non_archive_index',
                 type: 'GET',

@@ -3,21 +3,41 @@
     <input type="hidden" id="teacher_id" value="">
     <h2>Add/edit teacher</h2>
     <form class="form-horizontal" action="" method="" id="teacherForm">
-      <label>Name</label>
-      <input type="text" name="teacher_name" id="teacherName" class="form-control" value=""/>
-      <label>Gender</label>
-      <select name="teacher_gender" id="teacherGender" >
-        <option value="female">Female</option>
-        <option value="male">Male</option>
-      </select>
-      <label>Phone no</label>
-      <input type="text" name="teacher_phoneno" id="teacherPhoneno" class="form-control" value=""/>
-      <label>Classroom</label>
-      <select multiple="multiple" name="classroom_list_element" id="classroomListElement" >
-      </select>
-      <label>Subject</label>
-      <select multiple="multiple" name="subject_list_element" id="subjectListElement">
-      </select>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-6">
+          <input type="text" name="teacher_name" id="teacherName" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="col-lg-6">
+          <select name="teacher_gender" id="teacherGender" class="form-control">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone no</label>
+        <div class="col-lg-6">
+          <input type="text" name="teacher_phoneno" id="teacherPhoneno" class="form-control" value=""/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Classroom</label>
+        <div class="col-lg-6">
+          <select multiple="multiple" name="classroom_list_element" id="classroomListElement" class="form-control">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <div class="col-lg-6">
+          <select multiple="multiple" name="subject_list_element" id="subjectListElement">
+          </select>
+        </div>
+      </div>
       <button type="submit" class="btn btn-primary" id="teacherAdd">Add</button>
       <button type="submit" class="btn btn-primary hidden" id="teacherUpdate">Edit</button>
     </form>
