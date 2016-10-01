@@ -1,8 +1,7 @@
 /**
  * Created by garimadadheech on 9/28/16.
  */
-SM.ShowSchoolDashboard = function (school_id) {
-    this.school_data_id=school_id;
+SM.ShowSchoolDashboard = function () {
     this.initialize();
 }
 
@@ -23,9 +22,10 @@ SM.ShowSchoolDashboard.prototype= {
     },
    populateSchoolData: function () {
        console.log("populatechaool");
-       console.log(this.school_data_id);
+       var school_id=$('#addEditSchoolForm #school_id').val();
+       console.log(school_id);
        $.ajax({
-           url: '/schools/'+this.school_data_id,
+           url: '/schools/'+school_id,
            type: 'GET',
            format: 'JSON',
            async: false,
@@ -46,20 +46,17 @@ SM.ShowSchoolDashboard.prototype= {
 
     handleListClassrooms: function(){
         console.log("listing classrooms");
-        school_id=this.school_data_id;
         $("#showSchoolForm .listClassrooms").unbind();
         $("#showSchoolForm .listClassrooms").click(function (e) {
-            $('#addEditSchoolForm #school_id').val(school_id);
-            var listingClassroom = new SM.ListingClassroom(school_id);
+            var listingClassroom = new SM.ListingClassroom();
         })
     },
     handleListTeachers: function(){
         console.log("listing teachers");
-        school_id=this.school_data_id;
         $("#showSchoolForm .listTeachers").unbind();
         $("#showSchoolForm .listTeachers").click(function (e) {
-            $('#addEditSchoolForm #school_id').val(school_id);
-            var listingTeacher = new SM.ListingTeacher(school_id);
+            $('#addEditSchoolForm #school_id').val();
+            var listingTeacher = new SM.ListingTeacher();
         })
     }
 }
