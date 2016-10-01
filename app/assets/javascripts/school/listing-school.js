@@ -28,16 +28,18 @@ SM.ListingSchool.prototype= {
 			format: 'JSON',
 			success: function (data, textStatus, jqXHR) {
 				//console.log(data);
+                var show_school = "<button class='row-show' button-type='edit'><span class='label label-pill blue'>Show</span></button>";
 				var edit_school = "<button class='row-edit' button-type='edit'><span class='label label-pill blue'>Edit</span></button>";
 				var delete_school = "<button class='row-delete' button-type='delete'><span class='label label-pill blue'>Delete</span></button>";
 				$.each(data,function(i,item){
 					table.row.add( $(
-						'<tr school-id='+item.id+' class="row-show">'+
+						'<tr>'+
 						'<td>'+item.name+'</td>'+
 						'<td>'+item.city+'</td>'+
 						'<td>'+item.state+'</td>'+
 						'<td>'+item.zipcode+'</td>'+
 						'<td>'+item.phone_no+'</td>'+
+                        '<td school-id='+item.id+'>'+show_school+'</td>'+
 						'<td school-id='+item.id+'>'+edit_school+'</td>'+
 						'<td school-id='+item.id+'>'+delete_school+'</td>'+
 						'<tr>'
@@ -91,7 +93,7 @@ SM.ListingSchool.prototype= {
 	},
 	handleShowClick :function(){
 		$('#listSchools #schoolTable').on('click','.row-show',function(e){
-			var school_id=$(this).attr("school-id");
+            var school_id = ($(this).parent().attr("school-id"));
 			$('#addEditSchoolForm #school_id').val(school_id);
 			console.log(school_id);
 			$.ajax({
