@@ -13,19 +13,19 @@ SM.CommonDomManuplation.prototype={
         //this.backOnClassroomList();
     },
     hideAll : function () {
-        $('#schoolDashboard').addClass("hidden");
-        $('#addEditSchoolForm').addClass("hidden");
-        $('#listSchoolsForm').addClass("hidden");
-        $('#addEditClassroomForm').addClass("hidden");
-        $('#classroomDashboard').addClass("hidden");
-        $('#listClassroomsForm').addClass("hidden");
-        $('#teacherDashboard').addClass("hidden");
-        $('#listTeachersForm').addClass("hidden");
-        $('#addEditTeacherForm').addClass("hidden");
-        $('#showSchoolForm').addClass("hidden");
-        $('#listStudentsForm').addClass("hidden");
-        $('#addEditStudentForm').addClass("hidden");
-    },
+        $('#schoolContainer #listSchools').addClass("hidden");
+        $('#schoolContainer #addEditSchoolForm').addClass("hidden");
+
+        $('#schoolContainer #addEditClassroomForm').addClass("hidden");
+        $('#schoolContainer #classroomDashboard').addClass("hidden");
+        $('#schoolContainer #listClassroomsForm').addClass("hidden");
+        $('#schoolContainer #teacherDashboard').addClass("hidden");
+        $('#schoolContainer #listTeachersForm').addClass("hidden");
+        $('#schoolContainer #addEditTeacherForm').addClass("hidden");
+        $('#schoolContainer #showSchoolForm').addClass("hidden");
+        $('#schoolContainer #listStudentsForm').addClass("hidden");
+        $('#schoolContainer #addEditStudentForm').addClass("hidden");
+    }
     //backOnShowSchool: function(){
     //    var self=this;
     //    $('#back-link-go-back').removeClass("hidden");

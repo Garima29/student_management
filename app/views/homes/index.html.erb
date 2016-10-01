@@ -5,10 +5,10 @@
   <%=stylesheet_link_tag 'common_manifest'%>
 </head>
 <body>
-<div class="main">
-  <div class="container hidden" id="listSchoolsForm">
+<div id="schoolContainer">
+  <div class="container hidden" id="listSchools">
     <h2>School Dashboard</h2>
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" id="schoolTable">
       <thead>
       <tr>
         <th>Name</th>
@@ -18,39 +18,40 @@
         <th>Phone no</th>
       </tr>
       </thead>
+      <tbody>
+      </tbody>
     </table>
-    <div class="col-md-12 col-sm-12">
-    <ul id='school-list' class="list-group no-style" >
-      <li id='school-list-template-clone' class="hidden">
-        <div class='row'>
-          <span class='col-sm-2 span-school-name'>
-            School name
-          </span>
-          <span class='col-sm-2 span-school-city'>
-            School city
-          </span>
-          <span class='col-sm-2 span-school-state'>
-            School state
-          </span>
-          <span class='col-sm-2 span-school-zipcode'>
-            School zipcode
-          </span>
-          <span class='col-sm-2 span-school-phoneno'>
-            School phoneno
-          </span>
-          <span>
-            <button type="button" class="showSchool btn btn-primary btn-sm" id="" button-type="show" data-li="school-list-template-clone">Show</button>
-            <button type="button" class="editSchool btn btn-primary btn-sm" id="" button-type="edit" data-li="school-list-template-clone">Edit</button>
-            <button type="button" class="deleteSchool btn btn-primary btn-sm" id="" button-type="delete" data-li="school-list-template-clone">Delete</button>
-            <!--<button type="button" class="listClassrooms" id="listClassrooms " button-type="showClassrooms" data-li="school-list-template-clone">List classrooms</button>-->
-          </span>
-        </div>
-      </li>
-    </ul>
-   </div>
+    <!--<div class="col-md-12 col-sm-12">-->
+    <!--<ul id='school-list' class="list-group no-style" >-->
+      <!--<li id='school-list-template-clone' class="hidden">-->
+        <!--<div class='row'>-->
+          <!--<span class='col-sm-2 span-school-name'>-->
+            <!--School name-->
+          <!--</span>-->
+          <!--<span class='col-sm-2 span-school-city'>-->
+            <!--School city-->
+          <!--</span>-->
+          <!--<span class='col-sm-2 span-school-state'>-->
+            <!--School state-->
+          <!--</span>-->
+          <!--<span class='col-sm-2 span-school-zipcode'>-->
+            <!--School zipcode-->
+          <!--</span>-->
+          <!--<span class='col-sm-2 span-school-phoneno'>-->
+            <!--School phoneno-->
+          <!--</span>-->
+          <!--<span>-->
+            <!--<button type="button" class="showSchool btn btn-primary btn-sm" id="" button-type="show" data-li="school-list-template-clone">Show</button>-->
+            <!--<button type="button" class="editSchool btn btn-primary btn-sm" id="" button-type="edit" data-li="school-list-template-clone">Edit</button>-->
+            <!--<button type="button" class="deleteSchool btn btn-primary btn-sm" id="" button-type="delete" data-li="school-list-template-clone">Delete</button>-->
+            <!--&lt;!&ndash;<button type="button" class="listClassrooms" id="listClassrooms " button-type="showClassrooms" data-li="school-list-template-clone">List classrooms</button>&ndash;&gt;-->
+          <!--</span>-->
+        <!--</div>-->
+      <!--</li>-->
+    <!--</ul>-->
+   <!--</div>-->
     <button class="addNewSchool btn btn-primary btn-sm">Add new school</button>
   </div>
-</div>
 
 <div class="all_content">
   <%= render partial: 'homes/school_add_edit'%>
@@ -63,15 +64,15 @@
   <%= render partial: 'homes/teacher_list'%>
   <%= render partial: 'homes/student_list'%>
   <%= render partial: 'homes/student_add_edit'%>
-
+</div>
 </div>
 <footer class="footer">
 
 </footer>
 </body>
 </html>
+
 <%=javascript_include_tag 'common_manifest'%>
-<%=javascript_include_tag 'jquery-validate'%>
 <%=javascript_include_tag 'school_manifest'%>
 <%=javascript_include_tag 'classroom_manifest'%>
 <%=javascript_include_tag 'teacher_manifest'%>
