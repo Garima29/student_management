@@ -7,7 +7,7 @@ SM.ShowSchoolDashboard = function () {
 
 SM.ShowSchoolDashboard.prototype= {
     initialize:function() {
-        var x=new SM.CommonDomManuplation();
+        var commonDomManuplation=new SM.CommonDomManuplation();
         $('#schoolContainer #showSchoolForm').removeClass("hidden");
         this.populateSchoolData();
         this.handleListClassrooms();
@@ -55,7 +55,6 @@ SM.ShowSchoolDashboard.prototype= {
         console.log("listing teachers");
         $("#showSchoolForm .listTeachers").unbind();
         $("#showSchoolForm .listTeachers").click(function (e) {
-            $('#addEditSchoolForm #school_id').val();
             var listingTeacher = new SM.ListingTeacher();
         })
     }

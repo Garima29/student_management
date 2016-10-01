@@ -4,20 +4,13 @@
 
 var SM = SM || {};
 
-SM.AddEditSchool = function (school_id) {
-    console.log("header");
-    console.log(school_id);
-    console.log("header");
-    this.school_data_id = school_id || "";
-    if(this.school_data_id){
-        this.update=true;
-    }
+SM.AddEditSchool = function () {
     this.initialize();
 }
 
 SM.AddEditSchool.prototype= {
     initialize:function() {
-        var x=new SM.CommonDomManuplation();
+        var commonDomManuplation=new SM.CommonDomManuplation();
         $('#addEditSchoolForm').removeClass("hidden");
         $('#addEditSchoolForm #schoolAdd').removeClass("hidden");
         $('#addEditSchoolForm #schoolUpdate').addClass("hidden");
@@ -35,7 +28,6 @@ SM.AddEditSchool.prototype= {
         });
     },
     clearClassroomForm :function(){
-        $("#addEditSchoolForm #school_id").val("");
         $('#addEditSchoolForm #schoolName').val("");
         $('#addEditSchoolForm #schoolCity').val("");
         $('#addEditSchoolForm #schoolState').val("");
@@ -122,12 +114,14 @@ SM.AddEditSchool.prototype= {
     },
     populateSchool :function(){
         var self = this;
-        console.log(this.school_data_id);
-        if(this.update){
+        var school_created=$('#addEditSchoolForm #school_id').val() == "" ? false :true;
+        if(school_created){
+            console.log("Populating school");
+            var school_id=$('#addEditSchoolForm #school_id').val();
             $('#addEditSchoolForm #schoolAdd').addClass("hidden");
             $('#addEditSchoolForm #schoolUpdate').removeClass("hidden");
             $.ajax({
-                url: '/schools/'+this.school_data_id,
+                url: '/schools/'+school_id,
                    type: 'GET',
                    format: 'JSON',
                    async: false,
@@ -158,7 +152,7 @@ SM.AddEditSchool.prototype= {
                 school["state"] = $("#addEditSchoolForm #schoolState").val();
                 school["zipcode"] = $("#addEditSchoolForm #schoolZipcode").val();
                 school["phone_no"] = $("#addEditSchoolForm #schoolPhoneno").val();
-                school_id = $("#addEditSchoolForm #school_id").val();
+                var school_id = $("#addEditSchoolForm #school_id").val();
                 $.ajax({
                     url: '/schools/' + school_id,
                     type: 'PUT',

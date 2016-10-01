@@ -56,16 +56,34 @@ SM.ListingSchool.prototype= {
 			}
 		});
 	},
+    handleShowClick :function(){
+        $('#listSchools #schoolTable').on('click','.row-show',function(e){
+            var school_id = ($(this).parent().attr("school-id"));
+            $('#addEditSchoolForm #school_id').val(school_id);
+            console.log(school_id);
+            $.ajax({
+                url: '/schools/'+school_id,
+                type: 'GET',
+                format: 'JSON',
+                async: false,
+                success: function (data, textStatus, jqXHR) {
+                    var showSchoolDashboard=new SM.ShowSchoolDashboard();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                }
+            });
+        });
+    },
 	handleEditClick :function(){
 		console.log("handelEditDeleteClick");
 
 		$('#listSchools #schoolTable').on('click','.row-edit',function(e){
 			var self=this;
 			var school_id = ($(this).parent().attr("school-id"));
-			console.log("school id in handle");
-			console.log(school_id);
-			console.log("school id in handle");
-			var addEditSchool = new SM.AddEditSchool(school_id);
+            console.log(school_id);
+            $('#addEditSchoolForm #school_id').val(school_id);
+			var addEditSchool = new SM.AddEditSchool();
 		})
 	},
 	handleDeleteClick :function(){
@@ -91,25 +109,7 @@ SM.ListingSchool.prototype= {
 			});
 		});
 	},
-	handleShowClick :function(){
-		$('#listSchools #schoolTable').on('click','.row-show',function(e){
-            var school_id = ($(this).parent().attr("school-id"));
-			$('#addEditSchoolForm #school_id').val(school_id);
-			console.log(school_id);
-			$.ajax({
-				url: '/schools/'+school_id,
-				type: 'GET',
-				format: 'JSON',
-				async: false,
-				success: function (data, textStatus, jqXHR) {
-					var showSchoolDashboard=new SM.ShowSchoolDashboard();
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
 
-				}
-			});
-		});
-	},
 	handleAddSchoolClick :function(){
 		$('#listSchools .addNewSchool').unbind();
 		$('#listSchools .addNewSchool').click(function(e){
