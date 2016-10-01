@@ -5,19 +5,12 @@
 var SM = SM || {};
 
 SM.AddEditStudent = function (student_id) {
-    console.log("header");
-    console.log(student_id);
-    console.log("header");
-    this.student_data_id = student_id || "";
-    if(this.student_data_id){
-        this.update=true;
-    }
     this.initialize();
 }
 
 SM.AddEditStudent.prototype= {
     initialize:function() {
-        var x=new SM.CommonDomManuplation();
+        var CommonDomManuplation=new SM.CommonDomManuplation();
         $('#addEditStudentForm').removeClass("hidden");
         $('#addEditStudentForm #studentAdd').removeClass("hidden");
         $('#addEditStudentForm #studentUpdate').addClass("hidden");
@@ -32,9 +25,8 @@ SM.AddEditStudent.prototype= {
     handleBackButton :function(){
         $("#back-link-go-back .back-link-title").unbind();
         $("#back-link-go-back .back-link-title").click(function(){
-            school_id=$('#addEditSchoolForm #school_id').val();
             console.log("--------listing classroom");
-            var listingStudent = new SM.ListingStudent(school_id);
+            var listingStudent = new SM.ListingStudent();
 
         });
     },
@@ -47,7 +39,6 @@ SM.AddEditStudent.prototype= {
         $("#addEditStudentForm  #studentPhoneno").val("");
         $("#addEditStudentForm  #studentCity").val("");
         $("#addEditStudentForm  #studentState").val("");
-        $("#addEditStudentForm #studentGender").val("");
     },
     studentFormValidate :function(){
         console.log("studentform");
@@ -105,8 +96,8 @@ SM.AddEditStudent.prototype= {
 
     createStudent :function(){
         var self=this;
-        school_id=$('#addEditSchoolForm #school_id').val();
-        classroom_id_id=$('#addEditClassroomForm #classroom_id').val();
+        var school_id=$('#addEditSchoolForm #school_id').val();
+        var classroom_id_id=$('#addEditClassroomForm #classroom_id').val();
         console.log("createstudent");
         $('#addEditStudentForm #studentAdd').unbind();
         $('#addEditStudentForm #studentAdd').click(function(e){
@@ -133,7 +124,7 @@ SM.AddEditStudent.prototype= {
                     async: false,
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
-                        var listingstudent=new SM.ListingStudent();
+                        var listingStudent=new SM.ListingStudent();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -176,15 +167,13 @@ SM.AddEditStudent.prototype= {
     },
     populateStudent :function(){
         var self = this;
-        console.log("student_data_id");
-        console.log(this.student_data_id);
-        console.log("student_data_id");
-        console.log(this.student_data_id);
-        if(this.update){
+        var student_created = $('#addEditStudentForm #student_id').val() == '' ? false :true ;
+        if(student_created){
+            var student_id=$('#addEditStudentForm #student_id').val();
             $('#addEditStudentForm #studentAdd').addClass("hidden");
             $('#addEditStudentForm #studentUpdate').removeClass("hidden");
             $.ajax({
-                url: '/students/'+this.student_data_id,
+                url: '/students/'+student_id,
                 type: 'GET',
                 format: 'JSON',
                 async: false,
@@ -207,11 +196,8 @@ SM.AddEditStudent.prototype= {
 
     },
     updateStudent :function(){
-        student_id=$('#addEditStudentForm #student_id').val();
-        console.log("student_id");
-        console.log(student_id);
-        console.log("student_id");
-        school_id=$('#addEditSchoolForm #school_id').val();
+        var student_id=$('#addEditStudentForm #student_id').val();
+        var school_id=$('#addEditSchoolForm #school_id').val();
         $('#addEditStudentForm #studentUpdate').unbind();
         $('#addEditStudentForm #studentUpdate').click(function(e){
             e.preventDefault();
@@ -232,9 +218,7 @@ SM.AddEditStudent.prototype= {
                     format: 'JSON',
                     data: {student: student},
                     success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        console.log(school_id);
-                        var listingStudent = new SM.ListingStudent(school_id);
+                        var listingStudent = new SM.ListingStudent();
 
                     },
                     error: function (jqXHR, textStatus, errorThrown) {

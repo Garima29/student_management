@@ -51,6 +51,7 @@ class StudentsController < ApplicationController
     def classroom_students
       @classroom = Classroom.find(params[:id])
       @students = @classroom.students.collect {|s| s if s.archive == false}.compact
+      p @students
       render :json=>@students, status: :ok
     end
     private
