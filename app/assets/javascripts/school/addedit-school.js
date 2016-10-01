@@ -96,14 +96,12 @@ SM.AddEditSchool.prototype= {
                     format: 'JSON',
                     async: false,
                     success: function (data, textStatus, jqXHR) {
-                        //window.location.assign('/classroom_dashboard/show_classroom_dashboard');
                         console.log(data);
                         $('#addEditSchoolForm #school_id').val(data.id);
                         var addEditClassroom=new SM.AddEditClassroom();
-                       //var classroomDashboard =new SM.ClassroomDashboard();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        //alert(JSON.parse(jqXHR.responseText)["error"]);
+
                     }
                 });
             }

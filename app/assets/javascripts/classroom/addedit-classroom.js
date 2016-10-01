@@ -4,20 +4,13 @@
 
 var SM = SM || {};
 
-SM.AddEditClassroom = function (classroom_id) {
-    console.log("header");
-    console.log(classroom_id);
-    console.log("header");
-    this.classroom_data_id = classroom_id || "";
-    if(this.classroom_data_id){
-        this.update=true;
-    }
+SM.AddEditClassroom = function () {
     this.initialize();
 }
 
 SM.AddEditClassroom.prototype= {
     initialize:function() {
-        var x=new SM.CommonDomManuplation();
+        var commonDomManuplation=new SM.CommonDomManuplation();
         $('#addEditClassroomForm').removeClass("hidden");
         $('#addEditClassroomForm #classroomAdd').removeClass("hidden");
         $('#addEditClassroomForm #classroomUpdate').addClass("hidden");
@@ -32,12 +25,10 @@ SM.AddEditClassroom.prototype= {
     handleBackButton :function(){
         $("#back-link-go-back .back-link-title").unbind();
         $("#back-link-go-back .back-link-title").click(function(){
-            school_id=$('#addEditSchoolForm #school_id').val();
-            var listingClassroom=new SM.ListingClassroom(school_id);
+            var listingClassroom=new SM.ListingClassroom();
         });
     },
     clearClassroomForm :function(){
-        $("#addEditClassroomForm #classroom_id").val("");
         $('#addEditClassroomForm #classroomName').val("");
         $("#addEditClassroomForm #classroomNoOfStudents").val("");
     },
@@ -86,8 +77,8 @@ SM.AddEditClassroom.prototype= {
                 });
 
                 if(school_created) {
-                   var school=$('#addEditSchoolForm #school_id').val();
-                    $('#addEditClassroomForm #schoolListElement option[value = '+school+']' ).prop('selected','true');
+                   var school_id=$('#addEditSchoolForm #school_id').val();
+                    $('#addEditClassroomForm #schoolListElement option[value = '+school_id+']' ).prop('selected','true');
                     $('#addEditClassroomForm #schoolListElement').prop('disabled', true);
                 }
             },
@@ -120,10 +111,8 @@ SM.AddEditClassroom.prototype= {
                     format: 'JSON',
                     async: false,
                     success: function (data, textStatus, jqXHR) {
-                        //window.location.assign('/classroom_dashboard/show_classroom_dashboard');
-                        console.log(data);
                         $('#addEditClassroomForm #classroom_id').val(data.id);
-                        var listingClassroom =new SM.ListingClassroom(school_id);
+                        var listingClassroom =new SM.ListingClassroom();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         //alert(JSON.parse(jqXHR.responseText)["error"]);
@@ -137,21 +126,22 @@ SM.AddEditClassroom.prototype= {
     },
     populateClassroom :function(){
         var self = this;
-        console.log(this.classroom_data_id);
-        if(this.update){
+        var classroom_created = $('#addEditClassroomForm #classroom_id').val() == '' ? false :true ;
+        if(classroom_created){
+            var classroom_id=$('#addEditClassroomForm #classroom_id').val();
             console.log("1");
             $('#addEditClassroomForm #classroomAdd').addClass("hidden");
             $('#addEditClassroomForm #classroomUpdate').removeClass("hidden");
             $.ajax({
-                url: '/classrooms/'+this.classroom_data_id,
+                url: '/classrooms/'+classroom_id,
                 type: 'GET',
                 format: 'JSON',
                 async: false,
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
                     $("#addEditClassroomForm #classroom_id").val(data.id);
-                    $('#addEditClassroomForm #classroomName').val((data["name"]));
-                    $('#addEditClassroomForm #classroomNoOfStudents').val((data["no_of_students"]));
+                    $('#addEditClassroomForm #classroomName').val(data.name);
+                    $('#addEditClassroomForm #classroomNoOfStudents').val(data.no_of_students);
                     $('#addEditClassroomForm #schoolListElement option[value = '+data.school_id+']' ).prop('selected','true');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -162,7 +152,6 @@ SM.AddEditClassroom.prototype= {
 
     },
     updateClassroom :function(){
-        var school_id=$('#addEditSchoolForm #school_id').val();
         $('#addEditClassroomForm #classroomUpdate').unbind();
         $('#addEditClassroomForm #classroomUpdate').click(function(e){
             e.preventDefault();
@@ -171,7 +160,7 @@ SM.AddEditClassroom.prototype= {
                 classroom["name"]=$("#addEditClassroomForm  #classroomName").val();
                 classroom["no_of_students"]=$("#addEditClassroomForm #classroomNoOfStudents").val();
                 classroom["school_id"]=$("#addEditClassroomForm #schoolListElement").find(":selected").val();
-                classroom_id = $("#addEditClassroomForm #classroom_id").val();
+                var classroom_id = $("#addEditClassroomForm #classroom_id").val();
                 $.ajax({
                     url: '/classrooms/' + classroom_id,
                     type: 'PUT',
@@ -180,7 +169,7 @@ SM.AddEditClassroom.prototype= {
                     async: false,
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
-                        var listingClassroom = new SM.ListingClassroom(school_id);
+                        var listingClassroom = new SM.ListingClassroom();
 
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
