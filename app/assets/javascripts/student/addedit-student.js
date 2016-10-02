@@ -93,7 +93,35 @@ SM.AddEditStudent.prototype= {
             }
         });
     },
+    populateStudentClassroomList: function(){
+        var school_created = $('#addEditSchoolForm #school_id').val() == '' ? false :true ;
+        var school_id=$('#addEditSchoolForm #school_id').val();
+        var classroom_created = $('#addEditClassroomForm #classroom_id').val() == '' ? false :true ;
+        console.log(school_created);
+        $.ajax({
+            url: '/classrooms/non_archive_index',
+            type: 'GET',
+            format: 'JSON',
+            data: {school_id:school_id},
+            async: false,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#studentClassroomListElement').html("");
+                $.each(data, function (i, classroom) {
+                    var option_string = "<option value=" + classroom.id + ">" + classroom.name + "</option>";
+                    $('#studentClassroomListElement').append(option_string);
+                });
+                if(classroom_created) {
+                    $('#studentClassroomListElement').val($('#addEditClassroomForm #classroom_id').val());
+                    $('#studentClassroomListElement').prop('disabled', true);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
 
+            }
+        });
+
+    },
     createStudent :function(){
         var self=this;
         var school_id=$('#addEditSchoolForm #school_id').val();
@@ -136,35 +164,7 @@ SM.AddEditStudent.prototype= {
         });
 
     },
-    populateStudentClassroomList: function(){
-        var school_created = $('#addEditSchoolForm #school_id').val() == '' ? false :true ;
-        var school_id=$('#addEditSchoolForm #school_id').val();
-        var classroom_created = $('#addEditClassroomForm #classroom_id').val() == '' ? false :true ;
-        console.log(school_created);
-        $.ajax({
-            url: '/classrooms/non_archive_index',
-            type: 'GET',
-            format: 'JSON',
-            data: {school_id:school_id},
-            async: false,
-            success: function (data, textStatus, jqXHR) {
-                console.log(data);
-                $('#studentClassroomListElement').html("");
-                $.each(data, function (i, classroom) {
-                    var option_string = "<option value=" + classroom.id + ">" + classroom.name + "</option>";
-                    $('#studentClassroomListElement').append(option_string);
-                });
-                if(classroom_created) {
-                    $('#studentClassroomListElement').val($('#addEditClassroomForm #classroom_id').val());
-                    $('#studentClassroomListElement').prop('disabled', true);
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
 
-            }
-        });
-
-    },
     populateStudent :function(){
         var self = this;
         var student_created = $('#addEditStudentForm #student_id').val() == '' ? false :true ;
