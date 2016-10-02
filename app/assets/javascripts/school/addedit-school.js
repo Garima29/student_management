@@ -11,7 +11,7 @@ SM.AddEditSchool = function () {
 SM.AddEditSchool.prototype= {
     initialize:function() {
         var commonDomManuplation=new SM.CommonDomManuplation();
-        $('#addEditSchoolForm').removeClass("hidden");
+        $('#schoolContainer #addEditSchoolForm').removeClass("hidden");
         $('#addEditSchoolForm #schoolAdd').removeClass("hidden");
         $('#addEditSchoolForm #schoolUpdate').addClass("hidden");
         this.handleBackButton();

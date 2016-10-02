@@ -20,7 +20,7 @@ SM.CommonDomManuplation.prototype={
         $('#schoolContainer #classroomDashboard').addClass("hidden");
         $('#schoolContainer #listClassrooms').addClass("hidden");
         $('#schoolContainer #teacherDashboard').addClass("hidden");
-        $('#schoolContainer #listTeachersForm').addClass("hidden");
+        $('#schoolContainer #listTeachers').addClass("hidden");
         $('#schoolContainer #addEditTeacherForm').addClass("hidden");
         $('#schoolContainer #showSchoolForm').addClass("hidden");
         $('#schoolContainer #listStudents').addClass("hidden");

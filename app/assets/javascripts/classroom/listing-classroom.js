@@ -46,7 +46,7 @@ SM.ListingClassroom.prototype= {
                 async: true,
                 success: function (data, textStatus, jqXHR) {
                     console.log("listing classrooms");
-                    var show_button = "<button class='row-show' button-type='edit'><span class='label label-pill blue'>Show</span></button>";
+                    var show_button = "<button class='row-show' button-type='edit'><span class='label label-pill blue'>Show Students</span></button>";
                     var edit_button = "<button class='row-edit' button-type='edit'><span class='label label-pill blue'>Edit</span></button>";
                     var delete_button = "<button class='row-delete' button-type='delete'><span class='label label-pill blue'>Delete</span></button>";
                     $.each(data, function (i, item) {

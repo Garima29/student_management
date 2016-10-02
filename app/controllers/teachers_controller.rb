@@ -6,6 +6,11 @@ class TeachersController < ApplicationController
   def non_archive_index
     @school = School.find(params[:school_id])
     @teachers = @school.teachers.collect {|t| t if t.archive == false}.compact
+    p "teachers"
+    p @teachers
+    @teachers.each do |teacher|
+      p teacher.classroom_ids
+    end
     render :json => @teachers, :status => :ok
   end
 
@@ -36,11 +41,13 @@ class TeachersController < ApplicationController
   def update
     begin
       @teacher = Teacher.find(params[:id])
-      teacher_update=(params.require(:teacher).permit(:name, :gender, :phone_no, :school_id)).merge(:classroom_ids=>params[:teacher][:classroom_ids])
+      teacher_update=(params.require(:teacher).permit(:name, :gender, :phone_no, :school_id)).merge!(:classroom_ids=>params[:teacher][:classroom_ids],:subject_ids=>params[:teacher][:subject_ids])
       if @teacher.update_attributes!(teacher_update)
-        render :json=>JSON.parse(@teacher.to_json(:methods=>[:classrooms_id])), status: :ok
+        render :json=>JSON.parse(@teacher.to_json(:methods=>[:classrooms_id,:subjects_id])), status: :ok
       end
+      p @teacher.errors
     rescue => error
+      p error.message
       render :json=>{:error=>error.message}, status: :unprocessable_entity
     end
   end

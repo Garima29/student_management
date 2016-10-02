@@ -1,7 +1,7 @@
 <div class="main">
- <div class="container hidden" id="listTeachersForm">
+ <div class="container hidden" id="listTeachers">
    <h2>List teachers</h2>
-   <table class="table table-striped table-hover">
+   <table class="table table-striped table-hover" id="teacherTable">
      <thead>
        <tr>
          <th>Name</th>
@@ -10,32 +10,9 @@
          <th>Operations</th>
        </tr>
      </thead>
+     <tbody>
+     </tbody>
    </table>
-   <div class="col-md-10 col-sm-10">
-    <ul id='teacher-list' class="no-style">
-      <li id='teacher-list-template-clone' class="hidden">
-        <div class='row'>
-          <span class='col-sm-2 span-teacher-name'>
-            Teacher name
-          </span>
-          <span class='col-sm-2 span-teacher-gender'>
-            Teacher gender
-          </span>
-          <span class='col-sm-2 span-teacher-phoneno'>
-            Teacher phoneno
-          </span>
-          <span class='col-sm-6'>
-            <button type="button" class="editTeacher btn btn-primary" id="" button-type="edit" data-li="teacher-list-template-clone">Edit</button>
-            <button type="button" class="deleteTeacher btn btn-primary" id="" button-type="delete" data-li="teacher-list-template-clone">Delete</button>
-            <button type="button" class="listTeacherClassrooms btn btn-primary" id="" button-type="showTeacherClassrooms" data-li="teacher-list-template-clone">List classrooms</button>
-            <button type="button" class="listTeacherSubjects btn btn-primary" id="" button-type="showTeacherSubjects" data-li="teacher-list-template-clone">List subjects</button>
-            <!--<button type="button" class="listSubjects" id="listTeacherClassrooms" button-type="showTeacherClassrooms" data-li="teacher-list-template-clone">List classrooms</button>-->
-          </span>
-        </div>
-      </li>
-      <span class="col-sm-4 span-teacher-subjects"></span>
-      </ul>
-     </div>
     <button class="addNewTeacher">Add new teacher</button>
     <div id="back-link-go-back">
       <a class="back-link-title">Back</a>

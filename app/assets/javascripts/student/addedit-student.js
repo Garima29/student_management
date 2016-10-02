@@ -11,7 +11,7 @@ SM.AddEditStudent = function (student_id) {
 SM.AddEditStudent.prototype= {
     initialize:function() {
         var CommonDomManuplation=new SM.CommonDomManuplation();
-        $('#addEditStudentForm').removeClass("hidden");
+        $('#schoolContainer #addEditStudentForm').removeClass("hidden");
         $('#addEditStudentForm #studentAdd').removeClass("hidden");
         $('#addEditStudentForm #studentUpdate').addClass("hidden");
         this.handleBackButton();

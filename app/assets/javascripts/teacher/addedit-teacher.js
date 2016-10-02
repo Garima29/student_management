@@ -4,27 +4,20 @@
 
 var SM = SM || {};
 
-SM.AddEditTeacher = function (teacher_id) {
-    console.log("header");
-    console.log(teacher_id);
-    console.log("header");
-    this.teacher_data_id = teacher_id || "";
-    if(this.teacher_data_id){
-        this.update=true;
-    }
+SM.AddEditTeacher = function () {
     this.initialize();
 }
 
 SM.AddEditTeacher.prototype= {
     initialize:function() {
-        var x=new SM.CommonDomManuplation();
-        $('#addEditTeacherForm').removeClass("hidden");
+        var commonDomManuplation=new SM.CommonDomManuplation();
+        $('#schoolContainer #addEditTeacherForm').removeClass("hidden");
         $('#addEditTeacherForm #teacherAdd').removeClass("hidden");
         $('#addEditTeacherForm #teacherUpdate').addClass("hidden");
         this.handleBackButton();
         this.clearTeacherForm();
         this.teacherFormValidate();
-        this.populateClassroomList();
+        this.populateSchoolList();
         this.populateSubjectList();
         this.createTeacher();
         this.populateTeacher();
@@ -33,10 +26,7 @@ SM.AddEditTeacher.prototype= {
     handleBackButton :function(){
         $("#back-link-go-back .back-link-title").unbind();
         $("#back-link-go-back .back-link-title").click(function(){
-            school_id=$('#addEditSchoolForm #school_id').val();
-                console.log("--------listing teacger");
-                var listingTeacher = new SM.ListingTeacher(school_id);
-
+            var listingTeacher = new SM.ListingTeacher();
         });
     },
     clearTeacherForm :function(){
@@ -62,6 +52,9 @@ SM.AddEditTeacher.prototype= {
                     minlength: 10,
                     number: true
                 },
+                school_list_element: {
+                    required: true
+                },
                 subject_list_element: {
                     required: true
                 },
@@ -79,6 +72,9 @@ SM.AddEditTeacher.prototype= {
                 teacher_phoneno: {
                     required: 'teacher phoneno Required'
                 },
+                school_list_element: {
+                    required: 'Subject Required'
+                },
                 subject_list_element: {
                     required: 'Subject Required'
                 },
@@ -88,11 +84,51 @@ SM.AddEditTeacher.prototype= {
             }
         });
     },
-    populateClassroomList :function(){
-        school_id=$('#addEditSchoolForm #school_id').val();
+    populateSchoolList :function(){
+        var self=this;
+        var school_id=$('#addEditSchoolForm #school_id').val();
         var school_created = $('#addEditSchoolForm #school_id').val() == '' ? false :true ;
-        var teacher_created = $('#addEditteacherForm #teacher_id').val() == '' ? false :true ;
+        var teacher_created = $('#addEditTeacherForm #teacher_id').val() == '' ? false :true ;
         console.log(school_created);
+        $.ajax({
+            url: '/schools/non_archive_index',
+            type: 'GET',
+            format: 'JSON',
+            async: false,
+            success: function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#teacherForm #schoolListElement').html("");
+                $('#teacherForm #classroomListElement').html("");
+                $.each(data, function (i, school) {
+                    var option_string = "<option value=" + school.id + ">" + school.name + "</option>";
+                    $('#teacherForm #schoolListElement').append(option_string);
+                });
+                if(!(teacher_created)){
+                    //var school_id=$('#addEditSchoolForm #school_id').val();
+                    $('#teacherForm #schoolListElement option[value = '+school_id+']').prop('selected','true');
+                    $('#teacherForm #schoolListElement').prop('disabled',true);
+                    self.populateClassroomList(school_id);
+                }
+
+                //console.log("teacher created");
+                //console.log(teacher_created);
+                //console.log("teacher created");
+                $("#teacherForm #schoolListElement").change(function() {
+                    var school_selected = $(this).val();
+                    self.populateClassroomList(school_selected);
+                });
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+
+    },
+    populateClassroomList :function(school_id){
+        console.log("on change");
+        //var school_id=$('#teacherForm #schoolListElement').find(":selected").val();
+        console.log(school_id);
             $.ajax({
                 url: '/classrooms/non_archive_index',
                 type: 'GET',
@@ -101,15 +137,12 @@ SM.AddEditTeacher.prototype= {
                 async: false,
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
-                    $('#classroomListElement').html("");
+                    $('#teacherForm #classroomListElement').html("");
                     $.each(data, function (i, classroom) {
+                        console.log(classroom.school_id);
                         var option_string = "<option value=" + classroom.id + ">" + classroom.name + "</option>";
-                        $('#classroomListElement').append(option_string);
+                        $('#teacherForm #classroomListElement').append(option_string);
                     });
-                    //if(school_created) {
-                    //    $('#schoolListElement').val($('#addEditSchoolForm #school_id').val());
-                    //    $('#schoolListElement').prop('disabled', true);
-                    //}
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
@@ -126,15 +159,11 @@ SM.AddEditTeacher.prototype= {
             async: false,
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                $('#subjectListElement').html("");
+                $('#teacherForm #subjectListElement').html("");
                 $.each(data, function (i, subject) {
                     var option_string = "<option value=" + subject.id + ">" + subject.name + "</option>";
-                    $('#subjectListElement').append(option_string);
+                    $('#teacherForm #subjectListElement').append(option_string);
                 });
-                //if(school_created) {
-                //    $('#schoolListElement').val($('#addEditSchoolForm #school_id').val());
-                //    $('#schoolListElement').prop('disabled', true);
-                //}
             },
             error: function (jqXHR, textStatus, errorThrown) {
 
@@ -143,13 +172,16 @@ SM.AddEditTeacher.prototype= {
     },
     createTeacher :function(){
         var self=this;
-        school_id=$('#addEditSchoolForm #school_id').val();
+        var school_id=$('#addEditSchoolForm #school_id').val();
         console.log("createteacher");
         $('#addEditTeacherForm #teacherAdd').unbind();
         $('#addEditTeacherForm #teacherAdd').click(function(e){
             e.preventDefault();
+            console.log("beore valid");
             if($('#addEditTeacherForm #teacherForm').valid())
             {
+                console.log("===========");
+                console.log("after valid");
                 var teacher={};
                 var classroom_ids=[];
                 var subject_ids=[];
@@ -165,7 +197,9 @@ SM.AddEditTeacher.prototype= {
                 });
                 teacher["classroom_ids"]=classroom_ids;
                 teacher["subject_ids"]=subject_ids;
+                console.log("teachhhhh");
                 console.log(teacher);
+                console.log("teachhhhh");
                 $.ajax({
                     url: '/teachers',
                     type: 'POST',
@@ -174,7 +208,7 @@ SM.AddEditTeacher.prototype= {
                     async: false,
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
-                        var listingteacher=new SM.ListingTeacher(school_id);
+                        var listingteacher=new SM.ListingTeacher();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -188,15 +222,13 @@ SM.AddEditTeacher.prototype= {
     },
     populateTeacher :function(){
         var self = this;
-        console.log("teacher_data_id");
-        console.log(this.teacher_data_id);
-        console.log("teacher_data_id");
-        console.log(this.teacher_data_id);
-        if(this.update){
+        var teacher_created = $('#addEditTeacherForm #teacher_id').val() == '' ? false :true ;
+        if(teacher_created){
+            var teacher_id=$('#addEditTeacherForm #teacher_id').val();
             $('#addEditTeacherForm #teacherAdd').addClass("hidden");
             $('#addEditTeacherForm #teacherUpdate').removeClass("hidden");
             $.ajax({
-                url: '/teachers/'+this.teacher_data_id,
+                url: '/teachers/'+teacher_id,
                 type: 'GET',
                 format: 'JSON',
                 async: false,
@@ -204,8 +236,10 @@ SM.AddEditTeacher.prototype= {
                     $("#addEditTeacherForm #teacher_id").val(data.id);
                     $('#addEditTeacherForm #teacherName').val(data.name);
                     $('#addEditTeacherForm #teacherPhoneno').val(data.phone_no);
-
                     $('#addEditTeacherForm #teacherGender').val(data.gender);
+                    $('#teacherForm #schoolListElement option[value = '+data.school_id+']' ).prop('selected','true');
+                    $('#teacherForm #schoolListElement').prop('disabled',false);
+                    self.populateClassroomList(data.school_id);
                     for (var classroom_index=0; classroom_index < data.classrooms_id.length; classroom_index++)
                     {
                         $('#classroomListElement option[value = '+data.classrooms_id[classroom_index]+']' ).prop('selected','true');
@@ -223,11 +257,7 @@ SM.AddEditTeacher.prototype= {
 
     },
     updateTeacher :function(){
-        teacher_id=$('#addEditTeacherForm #teacher_id').val();
-        console.log("teacher_id");
-        console.log(teacher_id);
-        console.log("teacher_id");
-        school_id=$('#addEditSchoolForm #school_id').val();
+        var teacher_id=$('#addEditTeacherForm #teacher_id').val();
         $('#addEditTeacherForm #teacherUpdate').unbind();
         $('#addEditTeacherForm #teacherUpdate').click(function(e){
             e.preventDefault();
@@ -238,13 +268,13 @@ SM.AddEditTeacher.prototype= {
                 teacher["name"] = $("#addEditTeacherForm  #teacherName").val();
                 teacher["gender"] = $("#addEditTeacherForm #teacherGender").find(":selected").val();
                 teacher["phone_no"] = $('#addEditTeacherForm #teacherPhoneno').val();
-                teacher["school_id"] = school_id;
                 $('#classroomListElement :selected').each(function (i, selected) {
                     classroom_ids[i] = $(selected).val();
                 });
                 $('#subjectListElement :selected').each(function (i, selected) {
                     subject_ids[i] = $(selected).val();
                 });
+                teacher["school_id"] = $('#addEditTeacherForm #schoolListElement').find(":selected").val();
                 teacher["classroom_ids"] = classroom_ids;
                 teacher["subject_ids"] = subject_ids;
                 $.ajax({
@@ -254,8 +284,7 @@ SM.AddEditTeacher.prototype= {
                     data: {teacher: teacher},
                     success: function (data, textStatus, jqXHR) {
                         console.log(data);
-                        console.log(school_id);
-                        var listingTeacher = new SM.ListingTeacher(school_id);
+                        var listingTeacher = new SM.ListingTeacher();
 
                     },
                     error: function (jqXHR, textStatus, errorThrown) {

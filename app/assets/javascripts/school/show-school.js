@@ -46,15 +46,17 @@ SM.ShowSchoolDashboard.prototype= {
 
     handleListClassrooms: function(){
         console.log("listing classrooms");
-        $("#showSchoolForm .listClassrooms").unbind();
+        $("#showSchoolForm .listClassrooms").unbind('click');
         $("#showSchoolForm .listClassrooms").click(function (e) {
             var listingClassroom = new SM.ListingClassroom();
         })
     },
     handleListTeachers: function(){
         console.log("listing teachers");
-        $("#showSchoolForm .listTeachers").unbind();
+        $("#showSchoolForm .listTeachers").unbind('click');
         $("#showSchoolForm .listTeachers").click(function (e) {
+            console.log("1");
+            console.log($("#showSchoolForm #school_id").val());
             var listingTeacher = new SM.ListingTeacher();
         })
     }
