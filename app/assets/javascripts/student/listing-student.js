@@ -45,8 +45,8 @@ SM.ListingStudent.prototype= {
             data: {id:classroom_id},
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                var edit_button = "<button class='row-edit' button-type='edit'><span class='label label-pill blue'>Edit</span></button>";
-                var delete_button = "<button class='row-delete' button-type='delete'><span class='label label-pill blue'>Delete</span></button>";
+                var edit_button = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
+                var delete_button = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
                 $.each(data, function (i, item) {
                     console.log("+");
                     table.row.add( $(

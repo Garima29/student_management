@@ -48,10 +48,10 @@ SM.ListingTeacher.prototype= {
             format: 'JSON',
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                var show_classrooms = "<button class='row-show-classrooms' button-type='show-classrooms'><span class='label label-pill blue'>Show classrooms</span></button>";
-                var show_subjects = "<button class='row-show-subjects' button-type='show-subjects'><span class='label label-pill blue'>Show subjects</span></button>";
-                var edit_button = "<button class='row-edit' button-type='edit'><span class='label label-pill blue'>Edit</span></button>";
-                var delete_button = "<button class='row-delete' button-type='delete'><span class='label label-pill blue'>Delete</span></button>";
+                var show_classrooms = "<button class='row-show-classrooms btn btn-primary btn-sm' button-type='show-classrooms'><span>Show classrooms</span></button>";
+                var show_subjects = "<button class='row-show-subjects btn btn-primary btn-sm' button-type='show-subjects'><span>Show subjects</span></button>";
+                var edit_button = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
+                var delete_button = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
                 $.each(data, function (i, item) {
                     console.log(item.name);
                     console.log("+");
@@ -77,28 +77,6 @@ SM.ListingTeacher.prototype= {
             }
         });
     },
-    //addElementToList : function(teacher){
-    //    console.log("teacher name");
-    //    console.log(teacher.name);
-    //    console.log("teacher name");
-    //    var cloned_teacher;
-    //    cloned_teacher=$('#teacher-list-template-clone').clone(true, true);
-    //    cloned_teacher.attr("id","teacherListTemplate-"+(teacher.id));
-    //    cloned_teacher.attr('teacher-id', teacher.id);
-    //    cloned_teacher.find(".span-teacher-name").html(teacher.name);
-    //    cloned_teacher.find(".span-teacher-gender").html(teacher.gender);
-    //    cloned_teacher.find(".span-teacher-phoneno").html(teacher.phone_no);
-    //    cloned_teacher.find('.editTeacher').attr("data-li", "teacherListTemplate-"+(teacher.id));
-    //    cloned_teacher.find('.deleteTeacher').attr("data-li", "teacherListTemplate-"+(teacher.id));
-    //    cloned_teacher.find('.listTeacherClassrooms').attr("data-li", "teacherListTemplate-"+(teacher.id));
-    //    cloned_teacher.find('.listTeacherSubjects').attr("data-li", "teacherListTemplate-"+(teacher.id));
-    //    cloned_teacher.find(".editTeacher").attr("id","teacher-"+(teacher.id));
-    //    cloned_teacher.find(".deleteTeacher").attr("id","teacher-"+(teacher.id));
-    //    cloned_teacher.find(".listTeacherClassrooms").attr("id","teacher-"+(teacher.id));
-    //    cloned_teacher.find(".listTeacherSubjects").attr("id","teacher-"+(teacher.id));
-    //    cloned_teacher.removeClass("hidden");
-    //    $('#teacher-list').append(cloned_teacher);
-    //},
     handleEditClick :function(){
         console.log("handelEditDeleteClick");
         $('#listTeachers #teacherTable').on('click','.row-edit',function(e){
