@@ -135,25 +135,28 @@ SM.ListingTeacher.prototype= {
         });
     },
     handleTeacherSubjects :function(){
-        //$('#listTeachers #teacherTable').on('click','.row-show-subjects',function(e){
-        //    var teacher_id = ($(this).parent().attr("teacher-id"));
-        //    $.ajax({
-        //        url: '/subjects/teacher_subjects',
-        //        type: 'GET',
-        //        format: 'JSON',
-        //        data: {id:teacher_id},
-        //        async: false,
-        //        success: function (data, textStatus, jqXHR) {
-        //            $.each(data, function (i,item) {
-        //                console.log(item.name);
-        //                parent.append(item.name+" ");
-        //            })
-        //        },
-        //        error: function (jqXHR, textStatus, errorThrown) {
-        //            alert(JSON.parse(jqXHR.responseText)["error"]);
-        //        }
-        //    });
-        //});
+        $('#listTeachers #teacherTable').on('click','.row-show-subjects',function(e){
+            var self=this;
+            var teacher_id = ($(this).parent().attr("teacher-id"));
+            var parent = $(this).parent();
+            $.ajax({
+                url: '/subjects/teacher_subjects',
+                type: 'GET',
+                format: 'JSON',
+                data: {id:teacher_id},
+                async: false,
+                success: function (data, textStatus, jqXHR) {
+                    self.remove();
+                    $.each(data, function (i,item) {
+                        console.log(item.name);
+                        parent.append(item.name+" ");
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(JSON.parse(jqXHR.responseText)["error"]);
+                }
+            });
+        });
     },
     handleAddTeacherClick :function(){
         console.log("handleAdd teacherclick");

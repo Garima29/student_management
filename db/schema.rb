@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921141623) do
+ActiveRecord::Schema.define(version: 20161002142442) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string   "name",           limit: 255
-    t.integer  "no_of_students", limit: 4
     t.integer  "school_id",      limit: 4
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.boolean  "archive",        limit: 1,   default: false
+    t.integer  "no_of_students", limit: 4,   default: 0
   end
 
   create_table "classrooms_schools", id: false, force: :cascade do |t|
