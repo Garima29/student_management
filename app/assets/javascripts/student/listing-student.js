@@ -17,11 +17,18 @@ SM.ListingStudent.prototype= {
         this.listStudentElements();
         this.handleAddStudentClick();
         this.handleBackButton();
+        this.handleHomeButton();
     },
     handleBackButton :function(){
-        $("#back-link-go-back .back-link-title").unbind();
-        $("#back-link-go-back .back-link-title").click(function(){
+        $("#backLinkGoBack .back-link-title").unbind();
+        $("#backLinkGoBack .back-link-title").click(function(){
             var listingClassroom=new SM.ListingClassroom();
+        });
+    },
+    handleHomeButton :function(){
+        $("#backLinkGoHome .back-link-title").unbind();
+        $("#backLinkGoHome .back-link-title").click(function(){
+            var listingSchool=new SM.ListingSchool();
         });
     },
 

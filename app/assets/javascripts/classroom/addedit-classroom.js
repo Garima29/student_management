@@ -15,6 +15,7 @@ SM.AddEditClassroom.prototype= {
         $('#addEditClassroomForm #classroomAdd').removeClass("hidden");
         $('#addEditClassroomForm #classroomUpdate').addClass("hidden");
         this.handleBackButton();
+        this.handleHomeButton();
         this.clearClassroomForm();
         this.classroomFormValidate();
         this.populateSchoolList();
@@ -23,9 +24,15 @@ SM.AddEditClassroom.prototype= {
         this.updateClassroom();
     },
     handleBackButton :function(){
-        $("#back-link-go-back .back-link-title").unbind();
-        $("#back-link-go-back .back-link-title").click(function(){
+        $("#backLinkGoBack .back-link-title").unbind();
+        $("#backLinkGoBack .back-link-title").click(function(){
             var listingClassroom=new SM.ListingClassroom();
+        });
+    },
+    handleHomeButton :function(){
+        $("#backLinkGoHome .back-link-title").unbind();
+        $("#backLinkGoHome .back-link-title").click(function(){
+            var listingSchool=new SM.ListingSchool();
         });
     },
     clearClassroomForm :function(){

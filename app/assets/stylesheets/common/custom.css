@@ -7,3 +7,16 @@
 .no-style li{
     padding: 5px;
 }
+.sideIcons{
+    position: fixed;
+    top:25%;
+    padding-left:50px;
+    left:0px
+}
+#back-link-go-home .back-link-title,#back-link-go-back .back-link-title, {
+    postion:relative
+}
+ img {
+    height: 60px;
+    weight: 60px;
+}

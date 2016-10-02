@@ -18,16 +18,23 @@ SM.ListingClassroom.prototype= {
         this.listClassroomElements();
         this.handleAddClassroomClick();
         this.handleBackButton();
+        this.handleHomeButton();
     },
     handleBackButton :function(){
-        $("#back-link-go-back .back-link-title").unbind();
-        $("#back-link-go-back .back-link-title").click(function(){
+        $("#backLinkGoBack .back-link-title").unbind();
+        $("#backLinkGoBack .back-link-title").click(function(){
             var teacher_created=$('#addEditTeacherForm #teacher_id').val() == ''? false : true;
             if(teacher_created){
                 var listingTeacher=new SM.ListingTeacher();
             }else {
                 var listingSchool = new SM.ListingSchool();
             }
+        });
+    },
+    handleHomeButton :function(){
+        $("#backLinkGoHome .back-link-title").unbind();
+        $("#backLinkGoHome .back-link-title").click(function(){
+            var listingSchool=new SM.ListingSchool();
         });
     },
     listClassroomElements : function () {

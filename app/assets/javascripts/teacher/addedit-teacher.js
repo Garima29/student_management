@@ -15,6 +15,7 @@ SM.AddEditTeacher.prototype= {
         $('#addEditTeacherForm #teacherAdd').removeClass("hidden");
         $('#addEditTeacherForm #teacherUpdate').addClass("hidden");
         this.handleBackButton();
+        this.handleHomeButton();
         this.clearTeacherForm();
         this.teacherFormValidate();
         this.populateSchoolList();
@@ -24,9 +25,15 @@ SM.AddEditTeacher.prototype= {
         this.updateTeacher();
     },
     handleBackButton :function(){
-        $("#back-link-go-back .back-link-title").unbind();
-        $("#back-link-go-back .back-link-title").click(function(){
+        $("#backLinkGoBack .back-link-title").unbind();
+        $("#backLinkGoBack .back-link-title").click(function(){
             var listingTeacher = new SM.ListingTeacher();
+        });
+    },
+    handleHomeButton :function(){
+        $("#backLinkGoHome .back-link-title").unbind();
+        $("#backLinkGoHome .back-link-title").click(function(){
+            var listingSchool=new SM.ListingSchool();
         });
     },
     clearTeacherForm :function(){
