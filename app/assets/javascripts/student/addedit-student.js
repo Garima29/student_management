@@ -69,6 +69,7 @@ SM.AddEditStudent.prototype= {
                 student_phoneno: {
                     required: true,
                     minlength: 10,
+                    maxlength: 10,
                     number: true
                 },
                 student_classroom_list_element: {

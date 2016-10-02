@@ -57,6 +57,7 @@ SM.AddEditTeacher.prototype= {
                 teacher_phoneno: {
                     required: true,
                     minlength: 10,
+                    maxlength: 10,
                     number: true
                 },
                 school_list_element: {

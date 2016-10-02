@@ -46,7 +46,7 @@ SM.AddEditSchool.prototype= {
        $("#addEditSchoolForm #schoolForm").validate ({
            rules: {
                     school_name: {
-                        required: true
+                        required: true,
                     },
                     school_city: {
                         required: true
@@ -61,6 +61,7 @@ SM.AddEditSchool.prototype= {
                     school_phone_no: {
                         required: true,
                         minlength: 10,
+                        maxlength: 10,
                         number: true
                     }
                 },
