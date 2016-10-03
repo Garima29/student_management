@@ -88,8 +88,8 @@ SM.ListingSchool.prototype= {
 	},
 	handleDeleteClick :function(){
 		console.log("handelDeleteClick");
+        var self=this;
 		$('#listSchools #schoolTable').on('click','.row-delete',function(e){
-			var self=this;
 			var school_id = ($(this).parent().attr("school-id"));
 			var parent = $(this).closest('tr');
 			$.ajax({
@@ -101,7 +101,8 @@ SM.ListingSchool.prototype= {
 					console.log("deleting");
 					console.log(data);
 					console.log("deleting");
-					parent.remove();
+					//parent.remove();
+                    self.listSchoolElements();
 				},
 				error: function (jqXHR, textStatus, errorThrown) {
 

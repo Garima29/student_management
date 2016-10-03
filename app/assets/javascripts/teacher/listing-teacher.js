@@ -91,8 +91,8 @@ SM.ListingTeacher.prototype= {
     },
     handleDeleteClick :function(){
         console.log("handelDeleteClick");
+        var self=this;
         $('#listTeachers #teacherTable').on('click','.row-delete',function(e){
-            var self=this;
             var teacher_id = ($(this).parent().attr("teacher-id"));
             var parent = $(this).closest('tr');
             $.ajax({
@@ -104,7 +104,8 @@ SM.ListingTeacher.prototype= {
                     console.log("deleting");
                     console.log(data);
                     console.log("deleting");
-                    parent.remove();
+                    //parent.remove();
+                    self.listTeacherElements();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 

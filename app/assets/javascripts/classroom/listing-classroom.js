@@ -131,8 +131,8 @@ SM.ListingClassroom.prototype= {
     },
     handleDeleteClick :function(){
         console.log("handelDeleteClick");
+        var self=this;
         $('#listClassrooms #classroomTable').on('click','.row-delete',function(e){
-            var self=this;
             var classroom_id = ($(this).parent().attr("classroom-id"));
             var parent = $(this).closest('tr');
             $.ajax({
@@ -144,7 +144,8 @@ SM.ListingClassroom.prototype= {
                     console.log("deleting");
                     console.log(data);
                     console.log("deleting");
-                    parent.remove();
+                    //parent.remove();
+                    self.listClassroomElements();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 

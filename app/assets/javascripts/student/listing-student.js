@@ -82,8 +82,8 @@ SM.ListingStudent.prototype= {
     },
     handleDeleteClick :function(){
         console.log("handelDeleteClick");
+        var self=this;
         $('#listStudents #studentTable').on('click','.row-delete',function(e){
-            var self=this;
             var student_id = ($(this).parent().attr("student-id"));
             var parent = $(this).closest('tr');
             $.ajax({
@@ -95,7 +95,8 @@ SM.ListingStudent.prototype= {
                     console.log("deleting");
                     console.log(data);
                     console.log("deleting");
-                    parent.remove();
+                    //parent.remove();
+                    self.listStudentElements();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
