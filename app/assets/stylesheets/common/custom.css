@@ -20,3 +20,6 @@
     height: 60px;
     weight: 60px;
 }
+#listClassrooms #classroomTable {
+    width:100%!important;
+}

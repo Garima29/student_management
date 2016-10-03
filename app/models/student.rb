@@ -6,6 +6,7 @@ class Student < ActiveRecord::Base
   validates_presence_of :name, :father_name, :mother_name, :phone_no, :city, :state, :classroom_id, :school_id
   validates_numericality_of :phone_no, :school_id, :classroom_id
   validates_length_of :phone_no, is:10
+  validates_uniqueness_of :phone_no
   before_save :highlight_changes
   after_create :increase_no_of_students
   after_update :descrease_no_of_students
@@ -16,7 +17,6 @@ class Student < ActiveRecord::Base
   def increase_no_of_students
     p "inside increase"
     @classroom=self.classroom
-    p @classroom
     @classroom.update_attributes(:no_of_students=>(@classroom.no_of_students+1))
   end
   def descrease_no_of_students

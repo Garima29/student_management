@@ -163,7 +163,7 @@ SM.AddEditStudent.prototype= {
                         var listingStudent=new SM.ListingStudent();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-
+                        alert("Phone-no "+JSON.parse(jqXHR.responseText).error["phone_no"] );
                     }
                 });
             }

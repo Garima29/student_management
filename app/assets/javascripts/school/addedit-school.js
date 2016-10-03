@@ -109,7 +109,7 @@ SM.AddEditSchool.prototype= {
                         var addEditClassroom=new SM.AddEditClassroom();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-
+                        alert("Phone-no "+JSON.parse(jqXHR.responseText).error["phone_no"] );
                     }
                 });
             }

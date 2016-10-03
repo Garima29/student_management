@@ -7,6 +7,7 @@ class Teacher < ActiveRecord::Base
   validates_presence_of :name, :gender, :phone_no, :school_id
   validates_numericality_of :phone_no, :school_id
   validates_length_of :phone_no, is:10
+  validates_uniqueness_of :phone_no
   # validate :check_teacher_and_classroom_school_id
 
   # def check_teacher_and_classroom_school_id

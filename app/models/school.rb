@@ -6,4 +6,5 @@ class School < ActiveRecord::Base
   validates_presence_of :name,:city,:state,:zipcode,:phone_no
   validates_numericality_of :phone_no,:zipcode
   validates_length_of :phone_no, is:10
+  validates_uniqueness_of :phone_no
 end

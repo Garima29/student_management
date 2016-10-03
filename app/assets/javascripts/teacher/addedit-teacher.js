@@ -219,7 +219,7 @@ SM.AddEditTeacher.prototype= {
                         var listingteacher=new SM.ListingTeacher();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-
+                        alert("Phone-no "+JSON.parse(jqXHR.responseText).error["phone_no"] );
                     }
                 });
             }

@@ -28,8 +28,8 @@ RSpec.describe ClassroomsController, type: :controller do
   describe "GET non archive classrooms" do
     it 'should return all classrooms which are non archive' do
       school1=FactoryGirl.create(:school)
-      school2=FactoryGirl.create(:school)
-      school3=FactoryGirl.create(:school)
+      school2=FactoryGirl.create(:school,:phone_no=>"1234567880")
+      school3=FactoryGirl.create(:school,:phone_no=>"1234567890")
       classroom1=FactoryGirl.create(:classroom,:school_id=>school1.id,:archive=>true)
       classroom2=FactoryGirl.create(:classroom,:school_id=>school1.id,:archive=>true)
       classroom3=FactoryGirl.create(:classroom,:school_id=>school1.id,:archive=>false)
@@ -108,13 +108,13 @@ RSpec.describe ClassroomsController, type: :controller do
   end
   describe "GET teacher classrooms" do
     it "should return all classrooms of the teacher which are non-archived" do
-      school1=FactoryGirl.create(:school)
+      school1=FactoryGirl.create(:school,:phone_no=>"1234567888")
       school2=FactoryGirl.create(:school)
-      school3=FactoryGirl.create(:school)
+      school3=FactoryGirl.create(:school,:phone_no=>"1234567803")
       classroom1=FactoryGirl.create(:classroom,:school_id => school1.id)
       classroom2=FactoryGirl.create(:classroom,:school_id => school1.id)
-      teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>[classroom1.id,classroom2.id])
-      teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id)
+      teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>[classroom1.id,classroom2.id],:phone_no=>"1234567823")
+      teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id,:phone_no=>"1234567833")
       get :teacher_classrooms, :id=>teacher1
        JSON.parse(response.body).count.should be 2
     end
@@ -124,14 +124,14 @@ RSpec.describe ClassroomsController, type: :controller do
     context "with vaild params" do
       it "deletes the respective classroom"do
         school1=FactoryGirl.create(:school)
-        school2=FactoryGirl.create(:school)
-        school3=FactoryGirl.create(:school)
+        school2=FactoryGirl.create(:school,:phone_no=>"1234567883")
+        school3=FactoryGirl.create(:school,:phone_no=>"1234567855")
         classroom1=FactoryGirl.create(:classroom,:school_id => school1.id)
         classroom2=FactoryGirl.create(:classroom,:school_id => school1.id)
-        teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom1.id)
-        teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id)
-        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
-        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom2.id)
+        teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom1.id,:phone_no=>"1234567800")
+        teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id,:phone_no=>"1234567810")
+        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id,:phone_no=>"1234567820")
+        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom2.id,:phone_no=>"1234567780")
         put :archive, :id=>classroom1.id
         JSON.parse(response.body)["archive"].should eq true
         response.status.should eq 200
@@ -140,14 +140,14 @@ RSpec.describe ClassroomsController, type: :controller do
     context "with invaild params" do
       it "should return error in JSON format"do
         school1=FactoryGirl.create(:school)
-        school2=FactoryGirl.create(:school)
-        school3=FactoryGirl.create(:school)
+        school2=FactoryGirl.create(:school,:phone_no=>"1234567783")
+        school3=FactoryGirl.create(:school,:phone_no=>"1230567884")
         classroom1=FactoryGirl.create(:classroom,:school_id => school1.id)
         classroom2=FactoryGirl.create(:classroom,:school_id => school1.id)
-        teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom1.id)
-        teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id)
-        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
-        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom2.id)
+        teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom1.id,:phone_no=>"1234567889")
+        teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id,:classroom_ids=>classroom2.id,:phone_no=>"1234567981")
+        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id,:phone_no=>"1234567851")
+        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom2.id,:phone_no=>"1234567831")
         put :archive, :id=>1
         JSON.parse(response.body)["error"].should_not be_empty
         response.status.should eq 422
