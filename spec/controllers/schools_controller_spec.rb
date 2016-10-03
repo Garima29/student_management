@@ -109,8 +109,8 @@ RSpec.describe SchoolsController, type: :controller do
         classroom2=FactoryGirl.create(:classroom,:school_id => school1.id)
         teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id)
         teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id)
-        student1=FactoryGirl.create(:student,:school_id=>school1.id)
-        student2=FactoryGirl.create(:student,:school_id=>school1.id)
+        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
+        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
         put :archive, :id=>school1.id
         JSON.parse(response.body)["archive"].should eq true
         response.status.should eq 200
@@ -125,8 +125,8 @@ RSpec.describe SchoolsController, type: :controller do
         classroom2=FactoryGirl.create(:classroom,:school_id => school1.id)
         teacher1=FactoryGirl.create(:teacher,:school_id=>school1.id)
         teacher2=FactoryGirl.create(:teacher,:school_id=>school1.id)
-        student1=FactoryGirl.create(:student,:school_id=>school1.id)
-        student2=FactoryGirl.create(:student,:school_id=>school1.id)
+        student1=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
+        student2=FactoryGirl.create(:student,:school_id=>school1.id,:classroom_id=>classroom1.id)
         put :archive, :id=>1
         JSON.parse(response.body)["error"].should_not be_empty
         response.status.should eq 422

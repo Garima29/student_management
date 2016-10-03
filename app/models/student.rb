@@ -16,6 +16,7 @@ class Student < ActiveRecord::Base
   def increase_no_of_students
     p "inside increase"
     @classroom=self.classroom
+    p @classroom
     @classroom.update_attributes(:no_of_students=>(@classroom.no_of_students+1))
   end
   def descrease_no_of_students

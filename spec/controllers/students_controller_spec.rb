@@ -7,7 +7,7 @@ RSpec.describe StudentsController, type: :controller do
         school=FactoryGirl.create(:school)
         classroom=FactoryGirl.create(:classroom,:school_id=>school.id)
         teacher=FactoryGirl.create(:teacher,:school_id=>school.id)
-        student=FactoryGirl.create(:student,:school_id=>school.id)
+        student=FactoryGirl.create(:student,:school_id=>school.id,:classroom_id=>classroom.id)
         student_data={:name=>student.name,:father_name=>student.father_name, :mother_name=>student.mother_name, :phone_no=>student.phone_no, :city=>student.city, :state=>student.state, :classroom_id=>student.classroom_id, :school_id=>student.school_id}
         expect {
           post :create, :student=>student_data
@@ -20,7 +20,7 @@ RSpec.describe StudentsController, type: :controller do
         school=FactoryGirl.create(:school);
         classroom=FactoryGirl.create(:classroom,:school_id=>school.id)
         teacher=FactoryGirl.create(:teacher,:school_id=>school.id)
-        student=FactoryGirl.create(:student,:school_id=>school.id)
+        student=FactoryGirl.create(:student,:school_id=>school.id,:classroom_id=>classroom.id)
         student_data={:name=>student.name,:father_name=>student.father_name, :mother_name=>student.mother_name, :phone_no=>student.phone_no, :city=>student.city, :state=>student.state, :classroom_id=>student.classroom_id, :school_id=>nil}
         post :create, :student=>student_data
         JSON.parse(response.body)["error"].should_not be_empty
