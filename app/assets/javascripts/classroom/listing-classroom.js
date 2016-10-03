@@ -53,7 +53,7 @@ SM.ListingClassroom.prototype= {
                 async: true,
                 success: function (data, textStatus, jqXHR) {
                     console.log("listing classrooms");
-                    var show_button = "<button class='row-show btn btn-primary btn-sm' button-type='edit'><span>Show Students</span></button>";
+                    var show_button = "<button class='row-show btn btn-info btn-sm' button-type='edit'><span>Show Students</span></button>";
                     var edit_button = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
                     var delete_button = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
                     $.each(data, function (i, item) {
@@ -87,7 +87,7 @@ SM.ListingClassroom.prototype= {
                 format: 'JSON',
                 success: function (data, textStatus, jqXHR) {
                     console.log(data);
-                    var show_button = "<button class='row-show btn btn-primary btn-sm' button-type='show'><span>Show students</span></button>";
+                    var show_button = "<button class='row-show btn btn-info btn-sm' button-type='show'><span>Show students</span></button>";
                     var edit_button = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
                     var delete_button = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
                     $.each(data, function (i, item) {

@@ -48,8 +48,8 @@ SM.ListingTeacher.prototype= {
             format: 'JSON',
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                var show_classrooms = "<button class='row-show-classrooms btn btn-primary btn-sm' button-type='show-classrooms'><span>Show classrooms</span></button>";
-                var show_subjects = "<button class='row-show-subjects btn btn-primary btn-sm' button-type='show-subjects'><span>Show subjects</span></button>";
+                var show_classrooms = "<button class='row-show-classrooms btn btn-info btn-sm' button-type='show-classrooms'><span>Show classrooms</span></button>";
+                var show_subjects = "<button class='row-show-subjects btn btn-info btn-sm' button-type='show-subjects'><span>Show subjects</span></button>";
                 var edit_button = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
                 var delete_button = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
                 $.each(data, function (i, item) {

@@ -28,7 +28,7 @@ SM.ListingSchool.prototype= {
 			format: 'JSON',
 			success: function (data, textStatus, jqXHR) {
 				//console.log(data);
-                var show_school = "<button class='row-show btn btn-primary btn-sm' button-type='edit'><span>Show</span></button>";
+                var show_school = "<button class='row-show btn btn-info btn-sm' button-type='edit'><span>Show</span></button>";
 				var edit_school = "<button class='row-edit btn btn-primary btn-sm' button-type='edit'><span>Edit</span></button>";
 				var delete_school = "<button class='row-delete btn btn-danger btn-sm' button-type='delete'><span>Delete</span></button>";
 				$.each(data,function(i,item){
